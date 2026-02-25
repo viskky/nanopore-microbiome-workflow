@@ -1,0 +1,65 @@
+"""
+Nanopore Microbiome Analysis Workflow
+Author: Victor Betiku
+Description: Automated pipeline for AMR, CIS-phage, and diversity analysis
+"""
+
+import pandas as pd
+from pathlib import Path
+import os
+
+# Load configuration
+configfile: "config/config.yaml"
+
+# Load sample information
+samples_df = pd.read_csv(config["samples"])
+SAMPLES = samples_df["sample_id"].tolist()
+
+# Output directory
+OUT = config["output_dir"]
+
+# Include workflow rules
+include: "qc.smk"
+include: "assembly.smk"
+include: "annotation.smk"
+include: "amr_detection.smk"
+include: "cis_phage_detection.smk"
+include: "taxonomy.smk"
+
+# Target rule - defines final outputs
+rule all:
+    input:
+        # Quality control
+        expand(f"{OUT}/qc/fastqc/{{sample}}_fastqc.html", sample=SAMPLES),
+        expand(f"{OUT}/qc/fastqc/{{sample}}_fastqc.zip", sample=SAMPLES),
+	expand(f"{OUT}/qc/fastqc_trimmed/{{sample}}_trimmed_fastqc.html", sample=SAMPLES),
+	expand(f"{OUT}/qc/fastqc_trimmed/{{sample}}_trimmed_fastqc.zip", sample=SAMPLES),
+	f"{OUT}/qc/multiqc_report.html",
+
+        # Trimmed reads
+        expand(f"{OUT}/trimmed/{{sample}}.trimmed.fastq", sample=SAMPLES),
+
+        # Assembly
+        expand(f"{OUT}/assembly/{{sample}}/assembly.fasta", sample=SAMPLES),
+	expand(f"{OUT}/assembly_megahit/{{sample}}/final.contigs.fa", sample=SAMPLES),
+        expand(f"{OUT}/assembly/{{sample}}/quast_report.html", sample=SAMPLES),
+
+        # Annotation
+        expand(f"{OUT}/annotation/{{sample}}/{{sample}}.gbk", sample=SAMPLES),
+
+        # AMR detection
+        expand(f"{OUT}/amr/{{sample}}_amr_summary.tsv", sample=SAMPLES),
+        
+
+        # CIS_Phage detection
+        expand(f"{OUT}/cis_phage/{{sample}}_cis_phage_hits.tsv", sample=SAMPLES),
+        
+
+        # Taxonomy
+        expand(f"{OUT}/taxonomy/{{sample}}/kraken2_report.csv", sample=SAMPLES),
+        expand(f"{OUT}/taxonomy/{{sample}}/kraken2_output.csv", sample=SAMPLES),
+	expand(f"{OUT}/taxonomy/{{sample}}/krona.html", sample=SAMPLES),
+
+
+
+        

@@ -1,0 +1,82 @@
+name: nanopore-workflow
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  # Workflow management
+  - snakemake
+  - mamba >=1.4.0
+  
+  # Quality control
+  - fastqc >=0.12.1
+  - multiqc >=1.33
+  
+  # Adapter trimming
+  - porechop >=0.2.4
+  
+  # Assembly
+  - flye >=2.9
+  - megahit >=1.1.2
+  
+  # Assembly QC
+  - quast >=5.2.0
+  
+  # Annotation
+  - perl
+  - aragorn >=1.2
+  - barrnap >=0.7
+  - blast >=2.7
+  - hmmer >=3.1b2
+  - infernal >=1.1.2
+  - minced >=0.3
+  - parallel >=20180522
+  - perl-bioperl >=1.7.2
+  - perl-xml-simple
+  - prodigal >=2.6
+  - tbl2asn-forever >=25.7
+  - prokka >=1.15.6
+  
+  # AMR detection
+  - perl >=5.32
+  - perl-bioperl >=1.7
+  - perl-path-tiny
+  - perl-list-moreutils
+  - perl-json
+  - perl-libwww-perl
+  - any2fasta
+  - unzip
+  - zlib
+  - make
+  - bats-core
+  - abricate >=1.2.0
+  
+  # Phage detection
+  
+  
+  # Taxonomic classification
+  - kraken2 >=2.1.2
+  
+  # Visualization
+  - krona >=2.8.1
+  
+  # Utilities
+  - samtools >=1.20
+  - seqkit >=2.4.0
+  - csvtk >=0.27.2
+  
+  # Python packages
+  - python >=3.9
+  - pandas >=1.5.0
+  - numpy >=1.23.0
+  - biopython >=1.79
+  - matplotlib >=3.6.0
+  - seaborn >=0.12.0
+  
+  # R packages
+  - r-base=4.3
+  - r-tidyverse >=1.3.2
+  - r-ggplot2 >=3.4.0
+  - r-plotly >=4.10.0
+  - r-dt >=0.26
+  - r-rmarkdown >=2.18

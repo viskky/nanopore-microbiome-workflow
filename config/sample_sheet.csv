@@ -1,0 +1,2 @@
+sample_id,fastq_file,description
+sample1,data/raw/sample1.fastq,Wastewater sample from site A

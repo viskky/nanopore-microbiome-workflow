@@ -1,0 +1,53 @@
+# Data files
+*.fastq
+*.fastq.gz
+*.fq
+*.fq.gz
+*.fasta
+*.fa
+*.bam
+*.sam
+
+# Results (track structure, not large files)
+results/*/*
+!results/.gitkeep
+
+# Database files (too large for git)
+resources/databases/*
+!resources/databases/download_databases.sh
+!resources/databases/.gitkeep
+
+# Conda environments
+.snakemake/
+*.conda/
+__pycache__/
+*.pyc
+
+# Logs
+*.log
+logs/
+.snakemake/log/
+
+# Temporary files
+*.tmp
+tmp/
+temp/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Benchmarks
+benchmarks/
+
+# R files
+.Rhistory
+.RData
+.Rproj.user

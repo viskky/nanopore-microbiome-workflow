@@ -1,0 +1,82 @@
+# Nanopore Microbiome Workflow Configuration
+
+# Sample information
+samples: "config/sample_sheet.csv"
+
+# Input/Output directories
+input_dir: "data/raw"
+output_dir: "results"
+
+# Quality Control Parameters
+qc:
+  fastqc:
+    threads: 64
+  porechop:
+    threads: 64
+    extra: "--check_reads 10000"
+
+# Assembly Parameters
+assembly:
+  assembler: "flye"  # Options: "flye" or "megahit"
+  flye:
+    threads: 64
+    genome_size: "5m"  # Estimated total metagenome size
+    extra: "--meta --iterations 3"
+  megahit:
+    threads: 64
+    kingdom: "Bacteria"
+    min_contig_len: 200
+    extra: "--k-min 21 --k-max 141"
+  
+# Assembly Quality Assessment
+quast:
+  threads: 64
+  min_contig_length: 200
+
+# Annotation Parameters
+annotation:
+  prokka:
+    threads: 64
+    kingdom: "Bacteria"  # Bacteria, Archaea, Viruses
+    extra: "--metagenome"
+
+# AMR Detection Parameters
+amr:
+  abricate:
+    threads: 64
+    databases:
+      - "plasmidfinder"
+      - "vfdb"
+      - "ncbi"
+    min_coverage: 80
+    min_identity: 80
+
+# CIS AND/OR Phage Detection Parameters
+cis_phage:
+  hmmsearch:
+    threads: 64
+    hmm_profiles: "resources/databases/combined_CIS.hmm"
+    evalue: "1e-5"
+    extra: "--domtblout"
+
+# Taxonomic Classification Parameters
+taxonomy:
+  kraken2:
+    database: "resources/databases/kraken2_standard"
+    threads: 64
+    confidence: 0.1
+    extra: "--report-minimizer-data"
+ 
+  krona:
+    max_rank: "S"
+
+# Resource limits
+resources:
+  max_threads: 128
+  max_memory_gb: 480
+
+# Cluster configuration (for SLURM)
+cluster:
+  partition: "main"
+  account: "naiss2025-5-346"
+  time: "24:00:00"
