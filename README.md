@@ -19,12 +19,12 @@ An automated Snakemake workflow for comprehensive analysis of nanopore-sequenced
 
 ## Features
 
-- ✅ Fully automated workflow from FASTQ to results
-- ✅ Parallel processing for multiple samples
-- ✅ Conda environment management
-- ✅ HPC cluster support (SLURM)
-- ✅ Comprehensive quality control
-- ✅ Reproducible and version-controlled
+-  Fully automated workflow from FASTQ to results
+-  Parallel processing for multiple samples
+-  Conda environment management
+-  HPC cluster support (SLURM)
+-  Comprehensive quality control
+-  Reproducible and version-controlled
 
 ## Quick Start
 ```bash
