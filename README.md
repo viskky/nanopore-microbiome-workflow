@@ -69,19 +69,6 @@ See [usage.md](docs/usage.md) for detailed usage instructions.
 
 See [Results](results/) for detailed usage instructions
 
-## Citation
-
-If you use this workflow, please cite:
-- **Snakemake**: Mölder et al., F1000Research 2021
-- **FastQC**: Andrews, S. (2010)
-- **Porechop**: Wick et al., Microbial Genomics 2017
-- **Flye**: Kolmogorov et al., Nature Biotechnology 2019
-- **MEGAHIT**: Li et al., Bioinformatics 2015
-- **QUAST**: Gurevich et al., Bioinformatics 2013
-- **Prokka**: Seemann, Bioinformatics 2014
-- **ABRicate**: Seemann, GitHub repository
-- **Kraken2**: Wood et al., Genome Biology 2019
-- **KronaTools**: Ondov et al., BMC Bioinformatics 2011
 
 ## License
 
