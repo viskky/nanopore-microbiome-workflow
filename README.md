@@ -29,7 +29,7 @@ An automated Snakemake workflow for comprehensive analysis of nanopore-sequenced
 ## Quick Start
 ```bash
 # Clone repository
-git clone https://github.com/{yourusername}/nanopore-workflow.git
+git clone https://github.com/viskky/nanopore-workflow.git
 cd nanopore-workflow
 
 # Create conda environment
