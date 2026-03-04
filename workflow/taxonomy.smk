@@ -40,7 +40,7 @@ rule krona:
         """
         
         
-        # Create krona chart. I may need to edit the database if Kraken2 db consists of Krona's
+        # Create krona chart.
         ktImportTaxonomy -t 5 -m 3 -o {output} {input}
         
         """
